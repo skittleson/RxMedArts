@@ -1,0 +1,18 @@
+{
+  "name": "rxmedarts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "handlebars": "^4.1.0"
+  },
+  "dependencies": {
+    "concat-files": "^0.1.1",
+    "uglify-js": "^3.4.9"
+  }
+}
