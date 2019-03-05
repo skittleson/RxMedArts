@@ -11,13 +11,13 @@
     <meta name="Distribution" content="Global" />
     <meta name="Rating" content="General" />
     <meta name="Robots" content="INDEX,FOLLOW" />
-    <meta name="author" content="Medical Arts Pharmacy" />
-    <meta name="copyright" content="Copyright Medical Arts Pharmacy - 2019" />
+    <meta name="author" content="{{name}}" />
+    <meta name="copyright" content="Copyright {{name}} - 2019" />
     <meta name="Revisit-after" content="31 Days" />
     <meta name="google-site-verification" content="DLCgiLHl0joUGlbwFuNs8xxXGoj8po_42UVRvuzogDE" />
     <meta name="google-translate-customization" content="939f14ca9eadf8a5-abc1b097d52478f7-g0354f89afecccfcd-11" />
     <link rel="shortcut icon" type="image/x-icon" href="/icon.ico">
-    <meta name="application-name" content="Medical Arts Pharmacy">
+    <meta name="application-name" content="{{name}}">
     <meta name="msapplication-TileImage" content="{{url}}/images/logo.png">
     <meta name="msapplication-TileColor" content="#F5F5F5">
     <meta name="msapplication-starturl" content="{{url}}/">
@@ -33,12 +33,12 @@
     <meta property="og:description" content="{{desc}}" />
     <meta property="og:type" content="restaurant">
     <meta property="og:phone_number" content="{{phone}}" />
-    <meta property="og:latitude" content="32.782205" />
-    <meta property="og:longitude" content="-117.007043" />
-    <meta property="og:street-address" content="8854 Center Dr. #110" />
-    <meta property="og:locality" content="San Diego" />
-    <meta property="og:region" content="CA" />
-    <meta property="og:postal-code" content="91942" />
+    <meta property="og:latitude" content="{{lat}}" />
+    <meta property="og:longitude" content="{{long}}" />
+    <meta property="og:street-address" content="{{address}}" />
+    <meta property="og:locality" content="{{city}}" />
+    <meta property="og:region" content="{{region}}" />
+    <meta property="og:postal-code" content="{{postalCode}}" />
     <meta property="og:country-name" content="USA" />
     <title>{{title}}</title>
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -58,20 +58,20 @@
             <span itemprop="name">{{name}}</span>
             Located at
             <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                <span itemprop="streetAddress">8854 Center Dr. #110</span>,
-                <span itemprop="addressLocality">San Diego</span>,
-                <span itemprop="addressRegion">CA</span>.
-                <span itemprop="postalCode">91942</span>.
+                <span itemprop="streetAddress">{{address}}</span>,
+                <span itemprop="addressLocality">{{city}}</span>,
+                <span itemprop="addressRegion">{{region}}</span>.
+                <span itemprop="postalCode">{{postalCode}}</span>.
             </div>
             <div itemprop="location">
                 <div itemscope itemtype="http://schema.org/Place">
                     <h1>Where is <span itemprop="name">{{name}}</span> located?</h1>
                     <div itemprop="geo">
-                        Latitude: 32.782205
-                        Longitude: -117.007043
+                        Latitude: {{lat}}
+                        Longitude: {{long}}
                         <span itemscope itemtype="http://schema.org/GeoCoordinates">
-                            <meta itemprop="latitude" content="32.782205" />
-                            <meta itemprop="longitude" content="-117.007043" />
+                            <meta itemprop="latitude" content="{{lat}}" />
+                            <meta itemprop="longitude" content="{{long}}" />
                         </span>
                     </div>
                     </span>

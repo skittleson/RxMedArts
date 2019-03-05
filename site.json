@@ -6,7 +6,13 @@
     "desc": "At Medical Arts Pharmacy we work with the community and the people in it to give you the best service possible. Experience the Medical Arts Pharmacy difference for yourself.",
     "keywords": "medical arts pharmacy,pharmacy,medical arts,prescription,refill prescription,transfer prescription",
     "url": "https://rxmedarts.com",
-    "title": "Medical Arts Pharmacy"
+    "title": "Medical Arts Pharmacy",
+    "lat": "32.782205",
+    "long": "-117.007043",
+    "address": "8854 Center Dr. #110",
+    "city": "San Diego",
+    "region": "CA",
+    "postalCode": "91942"
   },
   "partials": ["partials/header.hbs", "partials/footer.hbs"],
   "pages": [
