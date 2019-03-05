@@ -12,10 +12,10 @@
     <meta name="Rating" content="General" />
     <meta name="Robots" content="INDEX,FOLLOW" />
     <meta name="author" content="Medical Arts Pharmacy" />
-    <meta name="copyright" content="Copyright Medical Arts Pharmacy - 2015" />
+    <meta name="copyright" content="Copyright Medical Arts Pharmacy - 2019" />
     <meta name="Revisit-after" content="31 Days" />
     <meta name="google-site-verification" content="DLCgiLHl0joUGlbwFuNs8xxXGoj8po_42UVRvuzogDE" />
-    <meta name="google-translate-customization" content="939f14ca9eadf8a5-abc1b097d52478f7-g0354f89afecccfcd-11"/>
+    <meta name="google-translate-customization" content="939f14ca9eadf8a5-abc1b097d52478f7-g0354f89afecccfcd-11" />
     <link rel="shortcut icon" type="image/x-icon" href="/icon.ico">
     <meta name="application-name" content="Medical Arts Pharmacy">
     <meta name="msapplication-TileImage" content="{{url}}/images/logo.png">
@@ -25,8 +25,7 @@
     <meta name="msapplication-window" content="width=1024;height=768">
     <meta name="msapplication-tooltip" content="Go to rxmedarts.com">
     <meta name="msapplication-task" content="name=Home; action-uri=/; icon-uri={{url}}/icon.ico">
-    <meta name="msapplication-task"
-        content="name=Contact Us; action-uri=/contactus/; icon-uri={{url}}/icon.ico">
+    <meta name="msapplication-task" content="name=Contact Us; action-uri=/contactus/; icon-uri={{url}}/icon.ico">
     <meta property="og:title" content="{{title}}" />
     <meta property="og:url" content="{{url}}" />
     <meta property="og:image" content="{{url}}/images/logo.png" />
@@ -78,7 +77,7 @@
                     </span>
                 </div>
                 <img itemprop="logo" src="{{url}}/images/logo.png" alt="{{name}}" />
-                Phone: <span itemprop="telephone">619-761-8551</span>
+                Phone: <span itemprop="telephone">{{nicePhone}}</span>
                 <link itemprop="url" href="{{url}}">
                 <a itemprop="sameAs" href="http://www.google.com/+rxmedarts">Google+</a>
                 <meta itemprop="hasPOS" content="true" />
@@ -102,7 +101,7 @@
                     </div>
                     <div class="pull-right hidden-xs text-right contact-bar">
                         <div id="google_translate_element"></div>
-                        <a class="phone-title" href="tel:{{phone}}"> <i class="fa fa-phone"></i> (619) 461-8551</a>
+                        <a class="phone-title" href="tel:{{phone}}"> <i class="fa fa-phone"></i> {{nicePhone}}</a>
                         <br />
                         <a href="https://twitter.com/rxmedarts"><i class="fa fa-lg fa-twitter twitter"></i></a>
                         <a href="https://www.facebook.com/rxmedarts"><i

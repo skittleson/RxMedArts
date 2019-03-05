@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "Medical Arts Pharmacy",
+    "phone": "16194618551",
+    "nicePhone": "(619) 461-8551",
+    "desc": "At Medical Arts Pharmacy we work with the community and the people in it to give you the best service possible. Experience the Medical Arts Pharmacy difference for yourself.",
+    "keywords": "medical arts pharmacy,pharmacy,medical arts,prescription,refill prescription,transfer prescription",
+    "url": "https://rxmedarts.com",
+    "title": "Medical Arts Pharmacy"
+  },
+  "partials": ["partials/header.hbs", "partials/footer.hbs"],
+  "pages": [
+    { "file": "index.hbs", "title": "Medical Arts Pharmacy" },
+    {
+      "file": "aboutus.hbs",
+      "keywords": "independent alternative,printu patel,ucla",
+      "title": "About Us"
+    },
+    {
+      "file": "contactus.hbs",
+      "keywords": "contact,contact us,medical arts pharmacy",
+      "desc": "Contact us via phone or by submitting this contact us form in prescriptions, suggestions, or customer service.",
+      "title": "Contact Us"
+    },
+    {
+      "file": "insurance.hbs",
+      "desc": "Medical Arts Pharmacy tries to find the lowest prescription prices, when possible, for you. We will work with your Medicare D plans and physicians to find lower priced generic drugs whenever possible to keep prescription drugs affordable. ",
+      "keywords": "insurance,prescription,workers comp",
+      "title": "Insurance"
+    },
+    { "file": "ourservices.hbs", "title": "Our Services" },
+    { "file": "privacy.hbs", "title": "Privacy" },
+    { "file": "resources.hbs", "title": "Resources" }
+  ]
+}
