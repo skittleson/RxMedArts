@@ -1,7 +1,9 @@
 const handlebars = require("handlebars");
 const path = require("path");
 const fs = require("fs");
+const uglify = require("uglify-js");
 
+var concat = require("concat-files");
 /**
  * inFile - string
  * outFile - string
@@ -22,10 +24,11 @@ module.exports.buildSiteFromJson = function buildSiteFromJson(json, src, dest) {
   if (!store.pages && Array.isArray(store.pages)) {
     throw new Error("Site pages must be an array");
   }
+  store.site.staticRandom = Math.floor(Math.random() * Math.floor(1000000000));
   let partials = [];
   store.partials.forEach(partial => {
-    const partialName = partial.split("/")[1].split(".")[0];
-    partials.push({ name: partialName, path: `${src}/${partial}` });
+    const partialName = partial.split(".")[0];
+    partials.push({ name: partialName, path: `${src}/partials/${partial}` });
   });
   registerPartials(partials);
   store.pages.forEach(page => {
@@ -52,6 +55,20 @@ module.exports.buildSiteFromJson = function buildSiteFromJson(json, src, dest) {
   });
   siteMap += "</urlset>";
   fs.writeFileSync(`${dest}/sitemap.xml`, siteMap);
+
+  let jsc = [];
+  store.js.forEach(file => {
+    jsc.push(`${file}.c.js`);
+    compressJs(file, `${file}.c.js`);
+  });
+  concat(jsc, `${dest}/js/site.js`, function(err) {
+    if (err) throw err;
+    jsc.forEach(file => {
+      fs.unlink(file);
+    });
+  });
+
+  concat(store.css, `${dest}/css/site.css`);
 };
 
 function ensureDirectoryExistence(filePath) {
@@ -70,4 +87,14 @@ function registerPartials(partials) {
       fs.readFileSync(partial.path, "utf8")
     );
   });
+}
+
+function compressJs(inFile, outFile) {
+  var result = uglify.minify(fs.readFileSync(inFile, "utf8"), {});
+  fs.writeFileSync(outFile, result.code, {});
+  if (result.error) {
+    console.log(result.error);
+  }
+  //console.log(result.code); // minified output//
+  //console.log(result.map);  // source map
 }
