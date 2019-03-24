@@ -1,0 +1,127 @@
+{{> header}}
+
+<div id="pageBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="/images/refill.jpg" class="img-responsive img-rounded">
+            </div>
+            <div class="col-sm-8">
+                <p class="text-justify">
+                    Please fill out the form below to refill your prescription. Orders will be processed within the hour
+                    and will be available for in store pick up. If delivery is requested, it will be included for the
+                    next scheduled delivery run. If you send your refill request after normal business hours, we'll have
+                    it ready for you the next business day. If you have any questions or concerns, please feel free to
+                    give us a call at (619) 461-8551.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div id='editor_container'>
+                    <div id='editor_holder'></div>
+                    <div class="form-group">
+                        <label>
+                            <input id="chbPrivacyPolicy" type="checkbox"> I agree with your <a href="/privacy/"
+                                target="_blank">
+                                Privacy Policy
+                            </a>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 ">
+                            <button id="btnSubmit" type="submit" disabled='true'
+                                class="btn btn-lg btn-success btn-block">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                {{> editorElements}}
+            </div>
+            <div class="col-sm-6 hidden-xs ">
+                <img src="/images/pills.jpg" class="img-responsive img-rounded pull-right">
+            </div>
+        </div>
+    </div>
+</div>
+{{> footer}}
+<script>
+    document.querySelector('#chbPrivacyPolicy').addEventListener('change', function (evt) {
+        document.querySelector("#btnSubmit").disabled = !evt.srcElement.checked;
+    });
+
+    var starting = {
+        Name: 'test',
+        Phone: '',
+        Address: '',
+        Order: 'Pickup',
+        Prescriptions: [
+            { PrescriptionName: 'sdf' }
+        ]
+    };
+    // Initialize the editor with a JSON schema
+    var editor = new JSONEditor(document.getElementById('editor_holder'), {
+        disable_array_reorder: true,
+        disable_array_delete_last_row: true,
+        array_controls_top: false,
+        schema: {
+            type: "object",
+            title: "Refill Prescription",
+            no_additional_properties: true,
+            required_by_default: true,
+            startval: starting,
+            properties: {
+                Name: {
+                    type: "string",
+                    format: "name",
+                    minLength: 5,
+                    maxLength: 50,
+                },
+                Phone: {
+                    type: "string",
+                    format: "phone",
+                    minLength: 5,
+                    maxLength: 20,
+                },
+                Address: {
+                    title: "Address",
+                    type: "string",
+                    format: "address",
+                    minLength: 5,
+                    maxLength: 50,
+                },
+                Order: {
+                    type: "string",
+                    description: 'If delivery, must be within 10 miles of store',
+                    enum: [
+                        "Pickup",
+                        "Delivery"
+                    ]
+                },
+                Prescriptions:
+                {
+                    type: "array",
+                    format: "table",
+                    items: {
+                        type: "object",
+                        properties: {
+                            PrescriptionName: {
+                                title: "Prescription Name",
+                                type: "string",
+                                minLength: 5,
+                                maxLength: 50,
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    });
+
+    editor.watch('Order', function () {
+        // Do something
+        console.log('yes');
+    });
+
+    initEditorFormRequest(editor, '#btnSubmit', '#editor_container', '#editorThankYou', '.lds-spinner', '{{submissionEndpoint}}', 'refill', '{{siteKey}}');
+</script>

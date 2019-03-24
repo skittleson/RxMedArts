@@ -33,16 +33,68 @@
                             href="http://www.yelp.com/biz/medical-arts-pharmacy-la-mesa">medical-arts-pharmacy-la-mesa</a>
                     </li>
                 </ul>
-                <!--<img class="img-rounded img-responsive" src="/images/contactus.jpg" >-->
             </div>
             <div class="col-sm-6">
                 <div class="row">
-                    <iframe
+                    <div id='editor_container'>
+                        <div id='editor_holder'></div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-lg btn-success btn-block" id="btnSubmit">Send
+                                    Message</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{> editorElements}}
+                </div>
+                <!--<iframe
                         src="https://docs.google.com/forms/d/e/1FAIpQLScIYziZCo1_zyErFv587jVFRKF1raI3U2SjidKp5zdsAMINVg/viewform?embedded=true"
                         style='width:100%;' height="1034" frameborder="0" marginheight="0"
-                        marginwidth="0">Loading...</iframe>
-                </div>
+                        marginwidth="0">Loading...</iframe>-->
             </div>
         </div>
     </div>
+</div>
 {{> footer}}
+<script>
+    
+    // Initialize the editor with a JSON schema
+    var editor = new JSONEditor(document.getElementById('editor_holder'), {
+        schema: {
+            type: "object",
+            title: "Contact Us",
+            no_additional_properties: true,
+            required_by_default: true,
+            properties: {
+                Name: {
+                    type: "string",
+                    format: "name",
+                    minLength: 5,
+                    maxLength: 50,
+                },
+                Email: {
+                    type: "string",
+                    format: "email",
+                    minLength: 10,
+                    maxLength: 150,
+                },
+                Subject: {
+                    type: "string",
+                    enum: [
+                        "Request",
+                        "Suggestions",
+                        "Customer Service",
+                        "Other"
+                    ]
+                },
+                Message: {
+                    type: "string",
+                    format: "textarea",
+                    minLength: 20,
+                    maxLength: 250,
+                }
+            }
+        }
+    });
+    initEditorFormRequest(editor, '#btnSubmit', '#editor_container', '#editorThankYou', '.lds-spinner', '{{submissionEndpoint}}', 'contactUs', '{{siteKey}}');
+</script>
