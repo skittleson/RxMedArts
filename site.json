@@ -13,7 +13,8 @@
     "city": "San Diego",
     "region": "CA",
     "postalCode": "91942",
-    "submissionEndpoint": "https://befy7j1xr4.execute-api.us-east-1.amazonaws.com/prod"
+    "submissionEndpoint": "https://befy7j1xr4.execute-api.us-east-1.amazonaws.com/prod",
+    "siteKey": "6LdplZYUAAAAAHS7TbOji-sRiEZT2BUspk9MsgMj"
   },
   "js": [
     "src/js/0_jquery.min.js",
@@ -23,10 +24,12 @@
   ],
   "css": [
     "node_modules/bootstrap/dist/css/bootstrap.css",
-    "src/css/font-awesome.css",
+    "node_modules/font-awesome/css/font-awesome.min.css",
     "src/css/global.css"
   ],
-  "partials": ["header.hbs", "footer.hbs"],
+  "partials": ["header.hbs", "footer.hbs", "editorElements.hbs"],
+  "assets": [
+  ],
   "pages": [
     { "file": "index.hbs", "title": "Medical Arts Pharmacy" },
     {
@@ -48,6 +51,12 @@
     },
     { "file": "ourservices.hbs", "title": "Our Services" },
     { "file": "privacy.hbs", "title": "Privacy" },
-    { "file": "resources.hbs", "title": "Resources" }
+    { "file": "resources.hbs", "title": "Resources" },
+    { "file": "transfer.hbs", "title": "Transfer Prescription" },
+    {
+      "file": "refill.hbs",
+      "title": "Refill Prescription",
+      "keywords": "refill prescription,prescription"
+    }
   ]
 }

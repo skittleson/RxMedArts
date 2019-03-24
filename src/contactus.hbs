@@ -36,19 +36,16 @@
             </div>
             <div class="col-sm-6">
                 <div class="row">
-                    <div id='editorRow'>
+                    <div id='editor_container'>
                         <div id='editor_holder'></div>
-                        <div class="g-recaptcha" data-sitekey="6Lc_UhcUAAAAAAlJSXkW9n2tSfn-iuvT4VusqFeF"></div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Send
+                                <button type="submit" class="btn btn-lg btn-success btn-block" id="btnSubmit">Send
                                     Message</button>
                             </div>
                         </div>
                     </div>
-                    <h3 id='editorThankYou' style='display:none;'>Thank you! We will respond within the next 24-48
-                        hours!</h3>
-
+                    {{> editorElements}}
                 </div>
                 <!--<iframe
                         src="https://docs.google.com/forms/d/e/1FAIpQLScIYziZCo1_zyErFv587jVFRKF1raI3U2SjidKp5zdsAMINVg/viewform?embedded=true"
@@ -60,6 +57,7 @@
 </div>
 {{> footer}}
 <script>
+    
     // Initialize the editor with a JSON schema
     var editor = new JSONEditor(document.getElementById('editor_holder'), {
         schema: {
@@ -98,30 +96,5 @@
             }
         }
     });
-    editor.on('change', function () {
-        editor.validate();
-    });
-    document.getElementById('btnContactUs').addEventListener('click', function () {
-        let errors = editor.validate();
-        if (errors.length) {
-            alert('There was an error with the form. All fields are required.');
-        }
-        else {
-            editor.disable();
-            document.querySelector('#editorRow').style.display = 'none';
-            let form = editor.getValue();
-            form.form = 'contactUs';
-            form.clientSubmissionDate = Date.now();
-            let endpoint = '{{submissionEndpoint}}';
-            putMessage(form, endpoint).then(() => {
-                document.querySelector('#editorThankYou').style.display = 'block';
-                editor.destroy();
-            }).catch(x => {
-                editor.enable();
-                document.querySelector('#editorRow').style.display = 'block';
-            });
-        }
-    });
-
-
+    initEditorFormRequest(editor, '#btnSubmit', '#editor_container', '#editorThankYou', '.lds-spinner', '{{submissionEndpoint}}', 'contactUs', '{{siteKey}}');
 </script>
