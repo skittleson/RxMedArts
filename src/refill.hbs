@@ -49,15 +49,6 @@
         document.querySelector("#btnSubmit").disabled = !evt.srcElement.checked;
     });
 
-    var starting = {
-        Name: 'test',
-        Phone: '',
-        Address: '',
-        Order: 'Pickup',
-        Prescriptions: [
-            { PrescriptionName: 'sdf' }
-        ]
-    };
     // Initialize the editor with a JSON schema
     var editor = new JSONEditor(document.getElementById('editor_holder'), {
         disable_array_reorder: true,
@@ -68,7 +59,6 @@
             title: "Refill Prescription",
             no_additional_properties: true,
             required_by_default: true,
-            startval: starting,
             properties: {
                 Name: {
                     type: "string",
