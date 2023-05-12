@@ -26,12 +26,12 @@ module.exports.buildSiteFromJson = function buildSiteFromJson(json, src, dest) {
   }
   store.site.staticRandom = Math.floor(Math.random() * Math.floor(1000000000));
   let partials = [];
-  store.partials.forEach(partial => {
+  store.partials.forEach((partial) => {
     const partialName = partial.split(".")[0];
     partials.push({ name: partialName, path: `${src}/partials/${partial}` });
   });
   registerPartials(partials);
-  store.pages.forEach(page => {
+  store.pages.forEach((page) => {
     const pageKeyValue = Object.assign(store.site, page);
     const folder = page.file.replace(".hbs", "");
     let saveToPath = `${dest}/${folder}/index.html`;
@@ -42,30 +42,32 @@ module.exports.buildSiteFromJson = function buildSiteFromJson(json, src, dest) {
   });
 
   let siteMap = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.schema.org/schemas/sitemap/0.9">`;
-  store.pages.forEach(page => {
+  store.pages.forEach((page) => {
     let folder = page.file.replace(".hbs", "");
     let priority = 0.8;
     if (page.file === "index.hbs") {
       priority = 1.0;
       folder = "";
     }
-    siteMap += `<url><loc>${
-      store.site.url
-    }/${folder}</loc><priority>${priority}</priority></url>`;
+    siteMap += `<url><loc>${store.site.url}/${folder}</loc><priority>${priority}</priority></url>`;
   });
   siteMap += "</urlset>";
   fs.writeFileSync(`${dest}/sitemap.xml`, siteMap);
 
   let jsc = [];
-  store.js.forEach(file => {
+  store.js.forEach((file) => {
     jsc.push(`${file}.c.js`);
     compressJs(file, `${file}.c.js`);
   });
-  concat(jsc, `${dest}/js/site.js`, function(err) {
+  concat(jsc, `${dest}/js/site.js`, function (err) {
     if (err) throw err;
-    jsc.forEach(file => {
-      fs.unlink(file);
-    });
+    // jsc.forEach((file) => {
+    //   console.log(file);
+    //   fs.unlink(file);
+    // });
+    // jsc.forEach(file => {
+    //   fs.unlink(file);
+    // });
   });
 
   concat(store.css, `${dest}/css/site.css`);
@@ -81,7 +83,7 @@ function ensureDirectoryExistence(filePath) {
 }
 
 function registerPartials(partials) {
-  partials.forEach(partial => {
+  partials.forEach((partial) => {
     handlebars.registerPartial(
       partial.name,
       fs.readFileSync(partial.path, "utf8")
